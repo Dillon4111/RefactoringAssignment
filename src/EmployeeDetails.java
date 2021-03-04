@@ -50,20 +50,13 @@ import javax.swing.filechooser.FileNameExtensionFilter;
 import net.miginfocom.swing.MigLayout;
 
 public class EmployeeDetails extends JFrame implements ActionListener, ItemListener, DocumentListener, WindowListener {
-    // decimal format for inactive currency text field
     private static final DecimalFormat format = new DecimalFormat("\u20ac ###,###,##0.00");
-    // decimal format for active currency text field
     private static final DecimalFormat fieldFormat = new DecimalFormat("0.00");
-    // hold object start position in file
     private long currentByteStart = 0;
     private final RandomFile application = new RandomFile();
-    // display files in File Chooser only with extension .dat
     private final FileNameExtensionFilter datfilter = new FileNameExtensionFilter("dat files (*.dat)", "dat");
-    // hold file name and path for current file in use
     private File file;
-    // holds true or false if any changes are made for text fields
     private boolean change = false;
-    // holds true or false if any changes are made for file content
     boolean changesMade = false;
     private JMenuItem open, save, saveAs, create, modify, delete, firstItem, lastItem, nextItem, prevItem, searchById,
             searchBySurname, listAll, closeApp;
@@ -72,21 +65,14 @@ public class EmployeeDetails extends JFrame implements ActionListener, ItemListe
     private JComboBox<String> genderCombo, departmentCombo, fullTimeCombo;
     private JTextField idField, ppsField, surnameField, firstNameField, salaryField;
     private static final EmployeeDetails frame = new EmployeeDetails();
-    // font for labels, text fields and combo boxes
     Font font1 = new Font("SansSerif", Font.BOLD, 16);
-    // holds automatically generated file name
     String generatedFileName;
-    // holds current Employee object
     Employee currentEmployee;
     JTextField searchByIdField, searchBySurnameField;
-    // gender combo box values
     String[] gender = {"", "M", "F"};
-    // department combo box values
     String[] department = {"", "Administration", "Production", "Transport", "Management"};
-    // full time combo box values
     String[] fullTime = {"", "Yes", "No"};
 
-    // initialize menu bar
     private JMenuBar menuBar() {
         JMenuBar menuBar = new JMenuBar();
         JMenu fileMenu, recordMenu, navigateMenu, closeMenu;
@@ -163,7 +149,7 @@ public class EmployeeDetails extends JFrame implements ActionListener, ItemListe
         searchBySurnameField.addActionListener(this);
         searchBySurnameField.setDocument(new JTextFieldLimit(20));
         searchPanel.add(searchSurname = new JButton(new ImageIcon(
-                new ImageIcon("imgres.png").getImage().getScaledInstance(35, 20, java.awt.Image.SCALE_SMOOTH))),
+                        new ImageIcon("imgres.png").getImage().getScaledInstance(35, 20, java.awt.Image.SCALE_SMOOTH))),
                 "width 35:35:35, height 20:20:20, growx, pushx, wrap");
         searchSurname.addActionListener(this);
         searchSurname.setToolTipText("Search Employee By Surname");
