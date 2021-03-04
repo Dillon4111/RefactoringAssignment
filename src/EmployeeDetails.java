@@ -56,9 +56,9 @@ public class EmployeeDetails extends JFrame implements ActionListener, ItemListe
     private static final DecimalFormat fieldFormat = new DecimalFormat("0.00");
     // hold object start position in file
     private long currentByteStart = 0;
-    private RandomFile application = new RandomFile();
+    private final RandomFile application = new RandomFile();
     // display files in File Chooser only with extension .dat
-    private FileNameExtensionFilter datfilter = new FileNameExtensionFilter("dat files (*.dat)", "dat");
+    private final FileNameExtensionFilter datfilter = new FileNameExtensionFilter("dat files (*.dat)", "dat");
     // hold file name and path for current file in use
     private File file;
     // holds true or false if any changes are made for text fields
@@ -71,7 +71,7 @@ public class EmployeeDetails extends JFrame implements ActionListener, ItemListe
             saveChange, cancelChange;
     private JComboBox<String> genderCombo, departmentCombo, fullTimeCombo;
     private JTextField idField, ppsField, surnameField, firstNameField, salaryField;
-    private static EmployeeDetails frame = new EmployeeDetails();
+    private static final EmployeeDetails frame = new EmployeeDetails();
     // font for labels, text fields and combo boxes
     Font font1 = new Font("SansSerif", Font.BOLD, 16);
     // holds automatically generated file name
@@ -80,11 +80,11 @@ public class EmployeeDetails extends JFrame implements ActionListener, ItemListe
     Employee currentEmployee;
     JTextField searchByIdField, searchBySurnameField;
     // gender combo box values
-    String[] gender = { "", "M", "F" };
+    String[] gender = {"", "M", "F"};
     // department combo box values
-    String[] department = { "", "Administration", "Production", "Transport", "Management" };
+    String[] department = {"", "Administration", "Production", "Transport", "Management"};
     // full time combo box values
-    String[] fullTime = { "", "Yes", "No" };
+    String[] fullTime = {"", "Yes", "No"};
 
     // initialize menu bar
     private JMenuBar menuBar() {
@@ -162,9 +162,8 @@ public class EmployeeDetails extends JFrame implements ActionListener, ItemListe
         searchPanel.add(searchBySurnameField = new JTextField(20), "width 200:200:200, growx, pushx");
         searchBySurnameField.addActionListener(this);
         searchBySurnameField.setDocument(new JTextFieldLimit(20));
-        searchPanel.add(
-                searchSurname = new JButton(new ImageIcon(new ImageIcon("imgres.png").getImage()
-                        .getScaledInstance(35, 20, java.awt.Image.SCALE_SMOOTH))),
+        searchPanel.add(searchSurname = new JButton(new ImageIcon(
+                new ImageIcon("imgres.png").getImage().getScaledInstance(35, 20, java.awt.Image.SCALE_SMOOTH))),
                 "width 35:35:35, height 20:20:20, growx, pushx, wrap");
         searchSurname.addActionListener(this);
         searchSurname.setToolTipText("Search Employee By Surname");
@@ -655,8 +654,8 @@ public class EmployeeDetails extends JFrame implements ActionListener, ItemListe
         // check for correct PPS format based on assignment description
         if (pps.length() == 7) {
             if (Character.isDigit(pps.charAt(0)) && Character.isDigit(pps.charAt(1))
-                    && Character.isDigit(pps.charAt(2))	&& Character.isDigit(pps.charAt(3))
-                    && Character.isDigit(pps.charAt(4))	&& Character.isDigit(pps.charAt(5))
+                    && Character.isDigit(pps.charAt(2)) && Character.isDigit(pps.charAt(3))
+                    && Character.isDigit(pps.charAt(4)) && Character.isDigit(pps.charAt(5))
                     && Character.isLetter(pps.charAt(6))) {
                 // open file for reading
                 application.openReadFile(file.getAbsolutePath());
