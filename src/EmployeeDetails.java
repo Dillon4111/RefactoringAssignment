@@ -127,19 +127,22 @@ public class EmployeeDetails extends JFrame implements ActionListener, ItemListe
         closeApp.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_F4, ActionEvent.CTRL_MASK));
 
         return menuBar;
-    }// end menuBar
+    }
 
-    // initialize search panel
     private JPanel searchPanel() {
         JPanel searchPanel = new JPanel(new MigLayout());
+
+        searchId = new JButton(new ImageIcon(
+                new ImageIcon("imgres.png").getImage().getScaledInstance(35, 20, java.awt.Image.SCALE_SMOOTH)));
+        searchSurname = new JButton(new ImageIcon(
+                new ImageIcon("imgres.png").getImage().getScaledInstance(35, 20, java.awt.Image.SCALE_SMOOTH)));
 
         searchPanel.setBorder(BorderFactory.createTitledBorder("Search"));
         searchPanel.add(new JLabel("Search by ID:"), "growx, pushx");
         searchPanel.add(searchByIdField = new JTextField(20), "width 200:200:200, growx, pushx");
         searchByIdField.addActionListener(this);
         searchByIdField.setDocument(new JTextFieldLimit(20));
-        searchPanel.add(searchId = new JButton(new ImageIcon(
-                        new ImageIcon("imgres.png").getImage().getScaledInstance(35, 20, java.awt.Image.SCALE_SMOOTH))),
+        searchPanel.add(searchId,
                 "width 35:35:35, height 20:20:20, growx, pushx, wrap");
         searchId.addActionListener(this);
         searchId.setToolTipText("Search Employee By ID");
@@ -148,16 +151,14 @@ public class EmployeeDetails extends JFrame implements ActionListener, ItemListe
         searchPanel.add(searchBySurnameField = new JTextField(20), "width 200:200:200, growx, pushx");
         searchBySurnameField.addActionListener(this);
         searchBySurnameField.setDocument(new JTextFieldLimit(20));
-        searchPanel.add(searchSurname = new JButton(new ImageIcon(
-                        new ImageIcon("imgres.png").getImage().getScaledInstance(35, 20, java.awt.Image.SCALE_SMOOTH))),
+        searchPanel.add(searchSurname,
                 "width 35:35:35, height 20:20:20, growx, pushx, wrap");
         searchSurname.addActionListener(this);
         searchSurname.setToolTipText("Search Employee By Surname");
 
         return searchPanel;
-    }// end searchPanel
+    }
 
-    // initialize navigation panel
     private JPanel navigPanel() {
         JPanel navigPanel = new JPanel();
 
@@ -187,7 +188,7 @@ public class EmployeeDetails extends JFrame implements ActionListener, ItemListe
         last.setToolTipText("Display last Record");
 
         return navigPanel;
-    }// end naviPanel
+    }
 
     private JPanel buttonPanel() {
         JPanel buttonPanel = new JPanel();
@@ -208,7 +209,6 @@ public class EmployeeDetails extends JFrame implements ActionListener, ItemListe
         return buttonPanel;
     }
 
-    // initialize main/details panel
     private JPanel detailsPanel() {
         JPanel empDetails = new JPanel(new MigLayout());
         JPanel buttonPanel = new JPanel();
