@@ -17,7 +17,7 @@ public class SearchByIdDialog extends JDialog implements ActionListener {
     EmployeeDetails parent;
     JButton search, cancel;
     JTextField searchField;
-    // constructor for SearchByIdDialog
+
     public SearchByIdDialog(EmployeeDetails parent) {
         setTitle("Search by Surname");
         setModal(true);
@@ -32,9 +32,8 @@ public class SearchByIdDialog extends JDialog implements ActionListener {
         setSize(500, 190);
         setLocation(350, 250);
         setVisible(true);
-    }// end SearchByIdDialog
+    }
 
-    // initialize search container
     public Container searchPane() {
         JPanel searchPanel = new JPanel(new GridLayout(3, 1));
         JPanel textPanel = new JPanel();
@@ -51,8 +50,6 @@ public class SearchByIdDialog extends JDialog implements ActionListener {
         searchField.setDocument(new JTextFieldLimit(20));
 
         buttonPanel.add(search = new JButton("Search"));
-//        new JButton(new ImageIcon(
-//                new ImageIcon("first.png").getImage().getScaledInstance(17, 17, java.awt.Image.SCALE_SMOOTH))));
         search.addActionListener(this);
         search.requestFocus();
 
@@ -63,28 +60,22 @@ public class SearchByIdDialog extends JDialog implements ActionListener {
         searchPanel.add(buttonPanel);
 
         return searchPanel;
-    }// end searchPane
+    }
 
-    // action listener for save and cancel button
     public void actionPerformed(ActionEvent e) {
-        // if option search, search for Employee
         if (e.getSource() == search) {
-            // try get correct valus from text field
             try {
                 Double.parseDouble(searchField.getText());
                 this.parent.searchByIdField.setText(searchField.getText());
-                // search Employee by ID
                 this.parent.searchEmployeeById();
-                dispose();// dispose dialog
-            }// end try
+                dispose();
+            }
             catch (NumberFormatException num) {
-                // display message and set colour to text field if entry is wrong
                 searchField.setBackground(new Color(255, 150, 150));
                 JOptionPane.showMessageDialog(null, "Wrong ID format!");
-            }// end catch
-        }// end if
-        // else dispose dialog
+            }
+        }
         else if (e.getSource() == cancel)
             dispose();
-    }// end actionPerformed
-}// end class searchByIdDialog
+    }
+}
